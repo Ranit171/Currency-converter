@@ -15,4 +15,14 @@ for (let select of dropdown) {
     }
     select.append(newOption);
   }
+  select.addEventListener("change", (evt) => {
+    updateFlag(evt.target);
+  });
 }
+
+const updateFlag = (element) => {
+  let currCode = element;
+  console.log(element.value);
+  let countryCode = countryList[currCode];
+  console.log(countryCode);
+};
