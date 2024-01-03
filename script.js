@@ -2,6 +2,7 @@ const BASE_URL =
   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/jpy.json";
 
 const dropdown = document.querySelectorAll(".dropdown select");
+const btn = document.querySelector("#btn");
 
 for (let select of dropdown) {
   for (let currCode in countryList) {
@@ -21,8 +22,20 @@ for (let select of dropdown) {
 }
 
 const updateFlag = (element) => {
-  let currCode = element;
-  console.log(element.value);
+  let currCode = element.value;
   let countryCode = countryList[currCode];
-  console.log(countryCode);
+  let img = element.parentElement.querySelector("img");
+  let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+  img.src = newSrc;
 };
+
+btn.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  let amount = document.querySelector(".amount input");
+  let amtValue = amount.value;
+  console.log(amtValue);
+  if (amtValue === "" || amtValue < 1) {
+    amtValue = 1;
+    amount.value = "1";
+  }
+});
